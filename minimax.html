@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo da Velha MiniMax</title>
+  <link rel="stylesheet" href="css/odd-site.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <style>
+    body {
+      background-image: url('fundo.jpg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="">Link do repositório</a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#footers">Dev's</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container  mt-3">
+
+
+    <h1 class="text-center text-white">Jogo da Velha (Minimax)</h1>
+
+    <div class="mt-5" style="display:flex;">
+      <a href="javascript:void(0)" onclick="exibir();" class="btn-toggle btn btn-success btn-lg text-center"
+        style="margin: 0 auto; max-width: 150px;" id="mostrarjogo">Iniciar Jogo<a>
+
+          <a href="javascript:void(0)" onclick="ocultar();"
+            class="limparjogo btn-toggle btn btn-warning btn-lg text-center " style="display:none; margin: 0 auto; max-width: 180px;"
+            id="limparjogo">Limpar Jogo<a>
+
+
+    </div>
+
+
+    <div id="jogo" class="jogo" style="flex-shrink: 1 auto;">
+      <div class="mt-5 game  row justify-content-center text-white mb-5 " style="background:#363636;">
+        <div id="c0,0" class="col-4 " style="border-left: none; border-top:none"></div>
+        <div id="c0,1" class="col-4 " style="border-top: none;"></div>
+        <div id="c0,2" class="col-4 " style="border-top: none; border-right: none;"></div>
+        <div id="c1,0" class="col-4 " style="border-left: none;"></div>
+        <div id="c1,1" class="col-4 "></div>
+        <div id="c1,2" class="col-4 " style="border-right: none;"></div>
+        <div id="c2,0" class="col-4 " style="border-left: none; border-bottom:none;"></div>
+        <div id="c2,1" class="col-4 " style="border-bottom:none;"></div>
+        <div id="c2,2" class="col-4 " style="border-bottom:none; border-right:none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer id="footers" class="bg-dark text-center text-white">
+    <!-- Grid container -->
+    <div class="container p-4">
+
+      <!-- Section: Text -->
+      <section class="mb-4">
+        <h2>
+          Desenvolvedores
+        </h2>
+      </section>
+      <!-- Section: Text -->
+
+      <!-- Section: Links -->
+      <section class="">
+        <!--Grid row-->
+        <div class="row">
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5>Moises Breno</h5>
+            <p>20892021</p>
+
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5>Kainan Gabriel</h5>
+            <p>20540698</p>
+
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5>Felipe Carnaval</h5>
+            <p>20890478</p>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5>Luiz Fernando</h5>
+            <p>22895990</p>
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </section>
+      <!-- Section: Links -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2022 Copyright
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+
+</body>
+
+</html>
+
+
+
+
+<script>
+  window.onload = function () {
+    document.getElementById("limparjogo").style.display = "none";
+   }
+  
+  function exibir() {
+    swal("Jogo iniciado, boa sorte contra nossa IA");
+    document.getElementById("mostrarjogo").style.display = "none";
+    document.getElementById("jogo").style.visibility = "visible";
+    document.getElementById("limparjogo").style.display = "block";
+
+  }
+
+  function ocultar() {
+    swal("Jogo encerrado, você desistiu");
+    document.getElementById("mostrarjogo").style.display = "block";
+    document.getElementById("jogo").style.visibility = "hidden";
+    document.getElementById("limparjogo").style.display = "none";
+    init();
+  }
+
+
+  var divs = document.querySelectorAll('#jogo div');
+  var jogador, board;
+
+  for (var i in divs) {
+    divs[i].onclick = (e) => {
+      var coords = e.target.id.split('c')[1].split(',');
+      var row = parseInt(coords[0]);
+      var col = parseInt(coords[1]);
+      if (board[row][col] == '') {
+        board[row][col] = jogador;
+        jogador = jogador == 'X' ? 'O' : 'X';
+        var winner = checkWinner(board);
+        if (winner) {
+          setTimeout(() => {
+            swal(winner + ' venceu!');
+            init();
+            document.getElementById("jogo").style.visibility = "hidden";
+            document.getElementById("mostrarjogo").style.display = "block";
+            document.getElementById("limparjogo").style.display = "none";
+          }, 16);//
+        }
+        else if (isFull(board)) {
+          setTimeout(() => { swal('Empate!'); init(); }, 16);
+          document.getElementById("jogo").style.visibility = "hidden";
+          document.getElementById("mostrarjogo").style.display = "block";
+          document.getElementById("limparjogo").style.display = "none";
+        }
+        else if (jogador == 'O') {
+          AI();
+        }
+        drawBoard(board);
+      }
+    };
+  }
+  function deepCopy(x) {
+    return JSON.parse(JSON.stringify(x));
+  }
+  function AI() {
+    action = bestAction(board, jogador);
+    var div = document.getElementById('c' + action[0] + ',' + action[1]);
+    div.click();
+  }
+  function init() {
+    jogador = 'X';
+    board = [['', '', ''], ['', '', ''], ['', '', '']];
+    drawBoard(board);
+  }
+  function drawBoard(board) {
+    for (var row in board) {
+      for (var col in board[row]) {
+        var id = 'c' + row + ',' + col;
+        var div = document.getElementById(id);
+        div.innerText = board[row][col];
+      }
+    }
+  }
+  function isFull(board) {
+    for (var row in board) {
+      for (var col in board[row]) {
+        if (board[row][col] == '') return false;
+      }
+    }
+    return true;
+  }
+  function checkWinner(board) {
+    var divs = document.querySelectorAll('#jogo div');
+    if (board[0][0] == board[0][1] && board[0][0] == board[0][2]) return board[0][0];
+    if (board[1][0] == board[1][1] && board[1][0] == board[1][2]) return board[1][0];
+    if (board[2][0] == board[2][1] && board[2][0] == board[2][2]) return board[2][0];
+    if (board[0][0] == board[1][0] && board[0][0] == board[2][0]) return board[0][0];
+    if (board[0][1] == board[1][1] && board[0][1] == board[2][1]) return board[0][1];
+    if (board[0][2] == board[1][2] && board[0][2] == board[2][2]) return board[0][2];
+    if (board[0][0] == board[1][1] && board[0][0] == board[2][2]) return board[0][0];
+    if (board[0][2] == board[1][1] && board[0][2] == board[2][0]) return board[0][2];
+    return null;
+  }
+
+  init();
+
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+  integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+  integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js">
+</script>
+<script>
+  function heuristica(board, jogador) {	//Estima valor do tabuleiro
+    var h = 0;
+    var oponente = jogador == 'X' ? 'O' : 'X';
+    for (var i = 0; i < 3; i++) {
+      if (board[i][0] != oponente && board[i][1] != oponente && board[i][2] != oponente)
+        h += Math.pow((board[i][0] == jogador) + (board[i][1] == jogador) + (board[i][2] == jogador), 2);
+    }
+    for (var i = 0; i < 3; i++) {
+      if (board[0][i] != oponente && board[1][i] != oponente && board[2][i] != oponente)
+        h += Math.pow((board[0][i] == jogador) + (board[1][i] == jogador) + (board[2][i] == jogador), 2);
+    }
+    if (board[0][0] != oponente && board[1][1] != oponente && board[2][2] != oponente)
+      h += Math.pow((board[0][0] == jogador) + (board[1][1] == jogador) + (board[2][2] == jogador), 2);
+    if (board[0][2] != oponente && board[1][1] != oponente && board[2][0] != oponente)
+      h += Math.pow((board[0][2] == jogador) + (board[1][1] == jogador) + (board[2][0] == jogador), 2);
+
+    for (var i = 0; i < 3; i++) {
+      if (board[i][0] != jogador && board[i][1] != jogador && board[i][2] != jogador)
+        h -= Math.pow((board[i][0] == oponente) + (board[i][1] == oponente) + (board[i][2] == oponente), 2);
+    }
+    for (var i = 0; i < 3; i++) {
+      if (board[0][i] != jogador && board[1][i] != jogador && board[2][i] != jogador)
+        h -= Math.pow((board[0][i] == oponente) + (board[1][i] == oponente) + (board[2][i] == oponente), 2);
+    }
+    if (board[0][0] != jogador && board[1][1] != jogador && board[2][2] != jogador)
+      h -= Math.pow((board[0][0] == oponente) + (board[1][1] == oponente) + (board[2][2] == oponente), 2);
+    if (board[0][2] != jogador && board[1][1] != jogador && board[2][0] != jogador)
+      h -= Math.pow((board[0][2] == oponente) + (board[1][1] == oponente) + (board[2][0] == oponente), 2);
+
+    return h;
+  }
+  function jogada(board, pos, jogador) {	//Computa resultado da jogada
+    var new_board = deepCopy(board);
+    new_board[pos[0]][pos[1]] = jogador;
+    return new_board;
+  }
+  function jogadasPossiveis(board) {	//Lista jogadas possíveis
+    var jogadas = [];
+    for (var i = 0; i < 3; i++) {
+      for (var j = 0; j < 3; j++) {
+        if (board[i][j] == '') jogadas.push([i, j]);
+      }
+    }
+    return jogadas;
+  }
+  function minimax(board, jogador, eu, maxdepth = 9) {
+    var w = checkWinner(board);
+    if (w == eu) return 999;
+    if (w && w != eu) return -999;
+    if (!w && isFull(board)) return 0;
+    if (maxdepth == 0) return heuristica(board, eu);
+
+
+    var jogadas = jogadasPossiveis(board);
+
+    if (jogador == eu) {	//MAX
+      let best = -Infinity;
+      for (let i in jogadas) {
+        let resultado = jogada(board, jogadas[i], jogador);
+        let valor = minimax(resultado, jogador == 'X' ? 'O' : 'X', eu, maxdepth - 1);
+        if (valor > best) {
+          best = valor;
+        }
+      }
+      return best;
+    }
+    else {	//MIN
+      let best = Infinity;
+      for (var i in jogadas) {
+        let resultado = jogada(board, jogadas[i], jogador);
+        let valor = minimax(resultado, jogador == 'X' ? 'O' : 'X', eu, maxdepth - 1);
+        if (valor < best) {
+          best = valor;
+        }
+      }
+      return best;
+    }
+  }
+  function bestAction(board, eu) {	//Retorna melhor jogada. 'eu' = quem é o max
+    var jogadas = jogadasPossiveis(board);
+    var best = -Infinity;
+    var besta = null;
+    console.log(heuristica(board, eu));
+    for (var i in jogadas) {
+      var resultado = jogada(board, jogadas[i], eu);
+      var valor = minimax(resultado, eu == 'X' ? 'O' : 'X', eu, 1);
+      if (valor > best) {
+        best = valor;
+        besta = jogadas[i];
+      }
+    }
+    return besta;
+  }
+</script>

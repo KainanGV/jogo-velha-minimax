@@ -1,0 +1,22 @@
+
+
+.game div {
+    border: 1px solid white;
+    line-height: 100px;
+    font-size: xx-large;
+    font-family: Arial;
+    text-align: center;
+    cursor: pointer;
+    height: 100px;
+}
+
+
+.jogo{
+    visibility: hidden;
+}
+
+
+.col-4:hover{
+    background: black;
+    transition: 0.9s;
+}
